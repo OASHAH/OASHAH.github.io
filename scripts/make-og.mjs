@@ -44,7 +44,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
   <text x="1104" y="46" text-anchor="end" font-family="${MONO}" font-size="15" letter-spacing="2.2" fill="${MUTED}">2021—2026</text>
 
   <text x="96" y="212" font-family="${SERIF}" font-size="104" fill="${INK}">Osaid Shah</text>
-  <text x="96" y="264" font-family="${SERIF}" font-size="30" font-style="italic" fill="${INK}">Software engineer. I build systems.</text>
+  <text x="96" y="264" font-family="${SERIF}" font-size="30" font-style="italic" fill="${INK}">Software engineer, now AI-enabled.</text>
 
   <line x1="96" y1="324" x2="1104" y2="324" stroke="${RULE}" stroke-width="1"/>
   <text x="96" y="354" font-family="${MONO}" font-size="14" letter-spacing="2.2" fill="${OXBLOOD}">INDEX</text>
