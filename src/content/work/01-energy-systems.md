@@ -1,37 +1,28 @@
 ---
 number: "01"
 index: "Energy systems"
-title: "Energy systems for the German market"
+title: "Rebuilding a forty-year-old system for the German energy market"
 name: "SIV.AG"
-provenance: "Harris Operating Group · Constellation Software · via Contour Software"
+provenance: "Harris Operating Group · Constellation Software"
 period: "2025—"
 location: "Germany"
-tags: ["TypeScript", "Kafka", "PostgreSQL", "OpenSearch", "KrakenD", "Keycloak", "Nx", "Turborepo"]
+tags: ["TypeScript", "Kafka", "PostgreSQL", "OpenSearch", "domain-driven design", "event-driven architecture"]
 brands:
-  - { src: "/work/logos/siv.svg", name: "SIV.AG", scale: 1.5 }
-figures:
-  - value: "7,000,000+"
-    label: "address records consolidated behind one API surface"
-  - value: "150+"
-    label: "tenants running the platform in production"
-  - value: "6"
-    label: "cube applications sharing one case-management library"
-  - value: "0"
-    label: "minutes of downtime across the legacy migration"
+  - { src: "/work/logos/siv.png", name: "SIV.AG", scale: 1.5 }
 image: "/work/siv-site.webp"
-imageAlt: "The SIV.AG website, showing its ERP software suite for the German energy and water industry"
+imageAlt: "The SIV.AG website, showing its software suite for the German energy and water industry"
 caption: "SIV.AG — software for the German energy and water industry"
 plateWidth: "full"
 note:
-  label: "Architecture note: one governed API surface"
+  label: "Architecture note: one governed surface"
   body: |
-    Clients do not address services. They address the gateway, which owns the routes, composes the JSON:API document from whichever services are involved, and applies the tenant's identity before anything downstream sees the request.
+    Clients do not address services. They address a gateway that owns the routes, composes the response from whichever services are involved, and applies the tenant's identity before anything downstream sees the request.
 
-    Retrieval and record-keeping are deliberately separate. PostgreSQL holds the addresses; OpenSearch holds the shape that search needs; Kafka keeps the second consistent with the first, and carried the legacy estate across during the migration.
+    Retrieval and record-keeping stay separate concerns, kept consistent by an event stream that also carried the legacy estate across during the migration.
 
-    Schema changes follow expand-and-contract: add the new shape, write both, move readers, then remove the old one — each step reversible, each release gated per tenant behind a flag.
+    Schema changes follow expand-and-contract: add the new shape, write both, move readers, then remove the old one — every step reversible, every release gated per tenant.
 ---
 
-Energy software for the German market, inside Constellation Software's Harris group. I architected **Address Space**, the company-wide platform consolidating 7M+ address records across 150+ tenants, with its OpenSearch layer and a KrakenD gateway that serves the routes and composes the JSON:API document. I also architected and launched the **Feed-in** cube — grid registration, solar onboarding, metering and market-location workflows — now in production across the same tenant estate.
+SIV.AG has been building the software German utilities run on for four decades. The work is a migration: taking a system with that much history inside it and rebuilding it as event-driven services, domain by domain, without interrupting the utilities depending on it.
 
-Millions of legacy records moved with zero downtime, on Kafka synchronisation, expand-and-contract schema evolution and tenant-scoped feature flags. Six cube applications now share one case-management library I built, alongside the Keycloak, microfrontend and design-system patterns those teams build against.
+I have taken two of those services from greenfield to production — one consolidating the address records the business settles against, the other covering grid registration, solar onboarding and metering. Both meant moving millions of records out of the legacy estate while it continued to serve, and sifting forty years of accumulated domain knowledge into a model that could hold it honestly. Alongside delivery I set the standards the other teams build against, worked across those teams to land them, and drove an AI-first practice through planning, architecture and implementation.

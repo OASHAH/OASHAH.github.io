@@ -6,11 +6,11 @@ name: "SoasKit"
 provenance: "independent · private"
 period: "ongoing"
 location: "private"
-tags: ["FastAPI", "PostgreSQL", "SvelteKit", "Android", "MCP", "Cloudflare Access"]
+tags: ["Python", "FastAPI", "PostgreSQL", "MCP", "RAG", "agent tooling"]
 plate: "soaskit"
 caption: "Personal sources, one append-only record, scoped tools"
 plateWidth: "column"
 ---
-It started as a collection of scripts. This happens frequently. Tasks, finances, capture, notes, journaling, books and career records each began as their own small thing and eventually stopped being separate. SoasKit is what they became: FastAPI and PostgreSQL underneath, SvelteKit and Android on top, owner-controlled Drive vaults for anything that should not sit in a database.
+A private second brain with agents on top. It started as a collection of scripts. This happens frequently. Tasks, finances, notes, journaling, books and career records each began separately and eventually stopped being separate.
 
-Local pipelines ingest WhatsApp and Meta exports, Gmail and ChatGPT history into append-only events, searchable memory and a generated chronology. The system exposes MCP servers and tools so agents query and act through the same interfaces I do — behind scoped tools, confirmation policies, audit records and Cloudflare Access.
+FastAPI and PostgreSQL underneath, SvelteKit and Android on top. Local ingestion pipelines normalise WhatsApp, Gmail and chat history into append-only events, searchable memory and a generated chronology. It exposes MCP servers and tools, so agents query and act against the same source of truth I do — behind scoped tools, confirmation policies and audit records.

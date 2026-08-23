@@ -6,7 +6,7 @@ import { site } from "../site";
     <span class="u-mono">{site.name}</span>
     <span class="u-mono middle">Work record</span>
     <span class="u-mono right">
-      <span class="span">2020—{site.year}</span>
+      <span class="span">2021—{site.year}</span>
       <button type="button" id="theme-toggle" class="u-mono toggle no-print" aria-pressed="false">
         <span class="label-light">Dark</span><span class="label-dark">Light</span>
       </button>
@@ -19,13 +19,13 @@ import { site } from "../site";
     const btn = document.getElementById("theme-toggle");
     if (!btn) return;
     const root = document.documentElement;
-    const sync = () => btn.setAttribute("aria-pressed", String(root.getAttribute("data-theme") === "dark"));
+    const sync = () => btn.setAttribute("aria-pressed", String(root.getAttribute("data-theme") !== "light"));
     sync();
     btn.addEventListener("click", () => {
-      const dark = root.getAttribute("data-theme") === "dark";
-      if (dark) root.removeAttribute("data-theme");
-      else root.setAttribute("data-theme", "dark");
-      try { localStorage.setItem("sheet-theme", dark ? "light" : "dark"); } catch (_) {}
+      const light = root.getAttribute("data-theme") === "light";
+      if (light) root.removeAttribute("data-theme");
+      else root.setAttribute("data-theme", "light");
+      try { localStorage.setItem("sheet-theme", light ? "dark" : "light"); } catch (_) {}
       sync();
     });
   })();
@@ -57,9 +57,9 @@ import { site } from "../site";
   }
   .toggle:hover { color: var(--navy); border-bottom-color: currentColor; }
   .toggle:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
-  .label-dark { display: none; }
-  :global([data-theme="dark"]) .label-light { display: none; }
-  :global([data-theme="dark"]) .label-dark { display: inline; }
+  .label-light { display: none; }
+  :global([data-theme="light"]) .label-light { display: inline; }
+  :global([data-theme="light"]) .label-dark { display: none; }
 
   @media (max-width: 40rem) {
     .middle { display: none; }

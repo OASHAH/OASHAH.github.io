@@ -3,17 +3,14 @@ interface Props {
   brands: { src: string; name: string; scale?: number }[];
 }
 const { brands } = Astro.props;
+/** Each logo ships two cuts: brand colours for the light sheet, a recoloured one for the dark. */
+const dark = (src: string) => src.replace(/\.png$/, "-dark.png");
 ---
 <ul class="brands">
   {brands.map((b) => (
-    <li>
-      <img
-        src={b.src}
-        alt={`${b.name} logo`}
-        loading="lazy"
-        decoding="async"
-        style={`--scale:${b.scale ?? 1}`}
-      />
+    <li style={`--scale:${b.scale ?? 1}`}>
+      <img class="on-dark" src={dark(b.src)} alt={`${b.name} logo`} loading="lazy" decoding="async" />
+      <img class="on-light" src={b.src} alt="" aria-hidden="true" loading="lazy" decoding="async" />
     </li>
   ))}
 </ul>
@@ -37,10 +34,10 @@ const { brands } = Astro.props;
     max-width: 11rem;
     object-fit: contain;
   }
-  /* the logos are the brands' own colours; on the dark sheet they need a lift */
-  :global([data-theme="dark"]) .brands img {
-    filter: brightness(1.12) saturate(1.05);
-  }
+  /* one cut per sheet; specificity has to beat `.brands img` above */
+  .brands .on-light { display: none; }
+  :global([data-theme="light"]) .brands .on-light { display: block; }
+  :global([data-theme="light"]) .brands .on-dark { display: none; }
 
   @media (max-width: 52rem) {
     .brands { grid-column: 1 / -1; grid-row: auto; gap: 1rem 1.75rem; }

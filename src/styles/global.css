@@ -3,33 +3,8 @@
    Editorial sheet: paper base, hairline rules, three typographic voices.
    ========================================================================= */
 
+/* Dark is the identity. Light is the opt-in. */
 :root {
-  /* paper */
-  --paper:       #F4F0E7;
-  --paper-inset: #EDE8DB;
-  --ink:         #171817;
-  --muted:       #6D6B66;
-  --rule:        #D8D2C3;
-  --rule-strong: #B7B0A0;
-  --navy:        #24374A;
-  --oxblood:     #6E3F36;
-
-  --serif: "Spectral", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --sans:  "Public Sans Variable", "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-
-  --step: 120ms;
-
-  /* the sheet */
-  --sheet:  78rem;
-  --rail:   8.5rem;
-  --prose:  40rem;
-  --gutter: clamp(1.5rem, 3.2vw, 3rem);
-
-  color-scheme: light;
-}
-
-[data-theme="dark"] {
   --paper:       #191A18;
   --paper-inset: #212220;
   --ink:         #E9E5DA;
@@ -38,7 +13,31 @@
   --rule-strong: #4C4D46;
   --navy:        #94B2CD;
   --oxblood:     #C69182;
+
+  --serif: "Spectral", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  "Public Sans Variable", "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --step: 120ms;
+
+  --sheet:  78rem;
+  --rail:   8.5rem;
+  --prose:  40rem;
+  --gutter: clamp(1.5rem, 3.2vw, 3rem);
+
   color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --paper:       #F4F0E7;
+  --paper-inset: #EDE8DB;
+  --ink:         #171817;
+  --muted:       #6D6B66;
+  --rule:        #D8D2C3;
+  --rule-strong: #B7B0A0;
+  --navy:        #24374A;
+  --oxblood:     #6E3F36;
+  color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -118,7 +117,7 @@ a:focus-visible {
 }
 
 @media print {
-  :root { --paper: #fff; --paper-inset: #fff; --ink: #000; --muted: #444; --rule: #bbb; --rule-strong: #888; }
+  :root, [data-theme="light"] { --paper: #fff; --paper-inset: #fff; --ink: #000; --muted: #444; --rule: #bbb; --rule-strong: #888; }
   body { font-size: 10.5pt; }
   a { border-bottom: 0; }
   .no-print { display: none !important; }

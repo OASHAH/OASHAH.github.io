@@ -6,10 +6,6 @@ import { site } from "../site";
     <p class="rail u-mono">Colophon</p>
     <div class="prose">
       <p class="line">{site.name} · {site.location} · {site.year}</p>
-      <p class="line muted">
-        Set in Spectral, Public Sans and IBM Plex Mono. Built with boring web technology and
-        served as static files.
-      </p>
       <ul class="links u-mono">
         {site.links.map((l) => (
           <li><a href={l.href} rel={l.href.startsWith("http") ? "me noopener" : undefined}>{l.label}</a></li>

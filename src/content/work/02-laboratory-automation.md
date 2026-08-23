@@ -5,22 +5,11 @@ title: "Software that operates laboratory instruments"
 name: "FORMULATRIX"
 period: "2023—2025"
 location: "Lahore"
-tags: ["React", "Redux", "TypeScript", "MQTT", "PostgreSQL", "embedded integration", "OEE analytics"]
+tags: ["React", "Redux", "TypeScript", "MQTT", "PostgreSQL", "hardware integration"]
 brands:
   - { src: "/work/logos/formulatrix.png", name: "Formulatrix", scale: 1.15 }
-figures:
-  - value: "~$120K"
-    label: "list price of the instruments the software runs"
-  - value: "24 fps"
-    label: "live camera streaming integrated with embedded controls"
-  - value: "1 year"
-    label: "analytics subscription the OEE dashboards opened alongside instrument sales"
-strip:
-  - { src: "/work/products/upulse.webp", alt: "Formulatrix µPULSE automated buffer exchange instrument" }
-  - { src: "/work/products/fast.webp", alt: "Formulatrix F.A.S.T. automated sample handling instrument" }
-stripCaption: "Formulatrix instrument line. Control software shipped for aµtoPulse v4 and the Reagent Exchanger; camera streaming for STAMPEDE."
 ---
 
-Formulatrix builds instruments that handle liquids and samples so scientists do not have to stand over them. I shipped the React, Redux and TypeScript control software for the **aµtoPulse v4** and **Reagent Exchanger** releases — instruments at roughly $120K each, bought for walk-away operation — and built real-time camera streaming at 24 fps inside **STAMPEDE**, integrated with the embedded hardware controls.
+Formulatrix builds instruments that handle liquids and samples so that scientists do not have to stand over them. I wrote the software that operates them.
 
-An MQTT broker and ingestion pipeline into PostgreSQL released the production data trapped inside the hardware. The shift and caddy-tip OEE calculations and dashboards built on it opened a one-year analytics subscription sold alongside the instruments.
+An instrument bought for walk-away work makes the interface's job narrow and unforgiving: state the machine's true condition, make the next action obvious, never imply a run is proceeding when it is not. Beyond the controls, I built live camera streaming from inside a running instrument, and the ingestion pipeline that finally moved production data out of the hardware and into dashboards a laboratory manager could read without a technician beside them.

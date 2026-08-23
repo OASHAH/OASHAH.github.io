@@ -53,3 +53,45 @@ for (const file of readdirSync(SRC).filter((f) => /\.(png|jpg|jpeg)$/i.test(f)))
   const m = await sharp(out).metadata();
   console.log(`${name.padEnd(14)} ${info.width}x${info.height} -> ${m.width}x${m.height}  bg=[${corner}]`);
 }
+
+/* ---------------------------------------------------------------------------
+ * Dark-sheet variants.
+ *
+ * Several of these wordmarks are set in near-black, which disappears on the
+ * dark sheet. Recolour only the desaturated pixels — the brand colours
+ * (Bayut green, OLX blue, the dubizzle flame) are left alone.
+ * ------------------------------------------------------------------------- */
+const INK = [233, 229, 218];
+
+function forDarkSheet(data, w, h) {
+  for (let i = 0; i < w * h * 4; i += 4) {
+    if (data[i + 3] === 0) continue;
+    const r = data[i], g = data[i + 1], b = data[i + 2];
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+
+    // Absolute chroma, not HSL saturation: a near-black pixel like rgb(0,1,0)
+    // has an HSL saturation of 1.0, which would read as a brand colour.
+    const chroma = max - min;
+
+    if (chroma < 40) {
+      // neutral ink — restate it in the sheet's ink colour, and firm up the
+      // alpha that the background knockout softened
+      data[i] = INK[0]; data[i + 1] = INK[1]; data[i + 2] = INK[2];
+      data[i + 3] = Math.min(255, Math.round(data[i + 3] * 1.35));
+    } else if (max < 150) {
+      // a genuinely dark brand colour: lift it without washing out the hue
+      for (let c = 0; c < 3; c++) data[i + c] = Math.round(data[i + c] + (255 - data[i + c]) * 0.4);
+    }
+  }
+}
+
+for (const file of readdirSync(OUT).filter((f) => f.endsWith(".png") && !f.endsWith("-dark.png"))) {
+  const name = path.basename(file, ".png");
+  const { data, info } = await sharp(path.join(OUT, file)).ensureAlpha().raw()
+    .toBuffer({ resolveWithObject: true });
+  forDarkSheet(data, info.width, info.height);
+  await sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } })
+    .png({ compressionLevel: 9 })
+    .toFile(path.join(OUT, `${name}-dark.png`));
+  console.log(`  ${name} -> ${name}-dark.png`);
+}

@@ -8,11 +8,11 @@
 import sharp from "sharp";
 import { writeFileSync } from "node:fs";
 
-const PAPER = "#F4F0E7";
-const INK = "#171817";
-const MUTED = "#6D6B66";
-const RULE = "#D8D2C3";
-const OXBLOOD = "#6E3F36";
+const PAPER = "#191A18";
+const INK = "#E9E5DA";
+const MUTED = "#948F84";
+const RULE = "#33342F";
+const OXBLOOD = "#C69182";
 
 const SERIF = "Spectral, Palatino, 'Iowan Old Style', Georgia, serif";
 const MONO = "'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace";
@@ -24,7 +24,6 @@ const index = [
   ["04", "SWOOP AUTOS"],
   ["05", "SOASTRA"],
   ["06", "SOASKIT"],
-  ["07", "SWOOP CART"],
 ];
 
 const rows = index
@@ -42,7 +41,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
   <line x1="0" y1="72" x2="1200" y2="72" stroke="${RULE}" stroke-width="1"/>
   <text x="96" y="46" font-family="${MONO}" font-size="15" letter-spacing="2.2" fill="${MUTED}">OSAID SHAH</text>
   <text x="600" y="46" text-anchor="middle" font-family="${MONO}" font-size="15" letter-spacing="2.2" fill="${MUTED}">WORK RECORD</text>
-  <text x="1104" y="46" text-anchor="end" font-family="${MONO}" font-size="15" letter-spacing="2.2" fill="${MUTED}">2020—2026</text>
+  <text x="1104" y="46" text-anchor="end" font-family="${MONO}" font-size="15" letter-spacing="2.2" fill="${MUTED}">2021—2026</text>
 
   <text x="96" y="212" font-family="${SERIF}" font-size="104" fill="${INK}">Osaid Shah</text>
   <text x="96" y="264" font-family="${SERIF}" font-size="30" font-style="italic" fill="${INK}">Software engineer. I build systems.</text>
