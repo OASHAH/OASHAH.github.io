@@ -1,0 +1,161 @@
+/* =========================================================================
+   Osaid Shah — work record
+   Editorial sheet: paper base, hairline rules, three typographic voices.
+   ========================================================================= */
+
+:root {
+  /* paper */
+  --paper:       #F4F0E7;
+  --paper-inset: #EDE8DB;
+  --ink:         #171817;
+  --muted:       #6D6B66;
+  --rule:        #D8D2C3;
+  --rule-strong: #B7B0A0;
+  --navy:        #24374A;
+  --oxblood:     #6E3F36;
+
+  --serif: "Spectral", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  "Public Sans Variable", "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --step: 120ms;
+
+  /* the sheet */
+  --sheet:  78rem;
+  --rail:   8.5rem;
+  --prose:  40rem;
+  --gutter: clamp(1.5rem, 3.2vw, 3rem);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper:       #191A18;
+  --paper-inset: #212220;
+  --ink:         #E9E5DA;
+  --muted:       #948F84;
+  --rule:        #33342F;
+  --rule-strong: #4C4D46;
+  --navy:        #94B2CD;
+  --oxblood:     #C69182;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- shared voices ------------------------------------------------ */
+
+.u-mono {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.u-rule { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+.sheet {
+  max-width: var(--sheet);
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+/* the three-track grid every record sits on */
+.record {
+  display: grid;
+  grid-template-columns: [rail] var(--rail) [prose] minmax(0, var(--prose)) [margin] 1fr;
+  column-gap: var(--gutter);
+}
+
+/* One track below the fold-out width. The line names are kept so that every
+   `grid-column: prose / -1` in the components still resolves. */
+@media (max-width: 52rem) {
+  .record { grid-template-columns: [rail prose] minmax(0, 1fr) [margin]; }
+}
+
+.prose { grid-column: prose; }
+.prose p { margin: 0 0 1.15em; }
+.prose p:last-child { margin-bottom: 0; }
+
+/* ---------- links -------------------------------------------------------- */
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: border-color var(--step) linear, color var(--step) linear;
+}
+a:hover { color: var(--navy); border-bottom-color: currentColor; }
+a:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+  border-bottom-color: transparent;
+}
+
+/* ---------- reduced motion / print --------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+@media print {
+  :root { --paper: #fff; --paper-inset: #fff; --ink: #000; --muted: #444; --rule: #bbb; --rule-strong: #888; }
+  body { font-size: 10.5pt; }
+  a { border-bottom: 0; }
+  .no-print { display: none !important; }
+  details { display: block; }
+  details > summary { display: none; }
+  .record { display: block; }
+  .plate, figure, .entry { break-inside: avoid; }
+}
+
+/* ---------- plates -------------------------------------------------------
+   Every diagram on this page is drawn in one language: hairline strokes,
+   no fills, monospace labels. They should read as a bound set.
+   ------------------------------------------------------------------------ */
+
+.plate-scroll { overflow-x: auto; overscroll-behavior-x: contain; }
+
+.plate {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: var(--plate-min, 34rem);
+}
+
+.plate .box     { fill: none; stroke: var(--rule-strong); stroke-width: 1; }
+.plate .box-in  { fill: var(--paper-inset); stroke: var(--rule-strong); stroke-width: 1; }
+.plate .line    { fill: none; stroke: var(--rule-strong); stroke-width: 1; }
+.plate .line-in { fill: none; stroke: var(--rule); stroke-width: 1; }
+.plate .dash    { stroke-dasharray: 3 3; }
+.plate .head    { fill: var(--rule-strong); stroke: none; }
+.plate .solid   { fill: var(--rule-strong); stroke: none; }
+
+.plate text {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  fill: var(--muted);
+}
+.plate .t-ink    { fill: var(--ink); font-size: 10px; letter-spacing: 0.11em; }
+.plate .t-accent { fill: var(--oxblood); }
+.plate .t-sm     { font-size: 8px; letter-spacing: 0.08em; }

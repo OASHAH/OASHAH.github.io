@@ -1,0 +1,51 @@
+---
+/** 06 — Personal sources, one append-only record, scoped tools. */
+const sources = ["WHATSAPP", "GMAIL", "DRIVE", "NOTES", "FINANCE"];
+---
+<div class="plate-scroll" style="--plate-min: 34rem">
+  <svg class="plate" viewBox="0 0 640 290" role="img"
+       aria-label="Diagram: personal sources — WhatsApp, Gmail, Drive, notes and finance — are normalised into append-only events in PostgreSQL, exposed through scoped MCP tools, and acted on by agents under confirmation and audit.">
+    <defs>
+      <marker id="ah-sk" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L8 4 L0 8 z" class="head" />
+      </marker>
+    </defs>
+
+    {sources.map((s, i) => (
+      <>
+        <rect class="box" x={10} y={20 + i * 38} width={104} height={28} />
+        <text x={62} y={38 + i * 38} text-anchor="middle" class="t-sm">{s}</text>
+        <path class="line-in" d={`M114 ${34 + i * 38} L160 ${34 + i * 38} L160 116`} />
+      </>
+    ))}
+    <path class="line" marker-end="url(#ah-sk)" d="M160 116 L196 116" />
+
+    <rect class="box" x="200" y="96" width="120" height="42" />
+    <text x="260" y="114" text-anchor="middle">EVENTS</text>
+    <text x="260" y="128" text-anchor="middle" class="t-sm">APPEND-ONLY</text>
+
+    <path class="line" marker-end="url(#ah-sk)" d="M320 117 L356 117" />
+
+    <rect class="box-in" x="360" y="96" width="120" height="42" />
+    <text x="420" y="121" text-anchor="middle" class="t-ink">POSTGRESQL</text>
+
+    <path class="line" marker-end="url(#ah-sk)" d="M480 117 L516 117" />
+
+    <rect class="box" x="520" y="96" width="110" height="42" />
+    <text x="575" y="114" text-anchor="middle">TOOLS</text>
+    <text x="575" y="128" text-anchor="middle" class="t-sm">MCP</text>
+
+    <path class="line" marker-end="url(#ah-sk)" d="M575 138 L575 186" />
+
+    <rect class="box" x="520" y="190" width="110" height="38" />
+    <text x="575" y="213" text-anchor="middle">AGENTS</text>
+
+    <path class="line dash" marker-end="url(#ah-sk)" d="M520 209 L420 209 L420 140" />
+    <text x="414" y="228" text-anchor="end" class="t-accent">CONFIRMATION POLICY · AUDIT RECORD</text>
+
+    <line class="line-in" x1="10" y1="256" x2="630" y2="256" />
+    <text x="10" y="276" class="t-sm">EVIDENCE-LINKED VAULTS</text>
+    <text x="260" y="276" class="t-sm">SCOPED TOOLS</text>
+    <text x="630" y="276" text-anchor="end" class="t-sm">CLOUDFLARE ACCESS</text>
+  </svg>
+</div>

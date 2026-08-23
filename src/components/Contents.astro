@@ -1,0 +1,84 @@
+---
+interface Props {
+  entries: { number: string; index: string; name: string; slug: string }[];
+}
+const { entries } = Astro.props;
+---
+<nav class="contents sheet" aria-label="Contents">
+  <div class="record">
+    <p class="rail u-mono">Index</p>
+    <ol class="prose list">
+      {entries.map((e) => (
+        <li>
+          <a href={`#${e.slug}`}>
+            <span class="num u-mono">{e.number}</span>
+            <span class="label">{e.index}</span>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="who u-mono">{e.name}</span>
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="#working-set">
+          <span class="num u-mono">08</span>
+          <span class="label">Working set</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="who u-mono">Tools · systems · languages</span>
+        </a>
+      </li>
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .contents {
+    padding-block: 2.25rem 2.75rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .rail { margin: 0; color: var(--muted); padding-top: 0.35rem; }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* the index is the one place the page runs wide */
+    grid-column: prose / -1;
+    max-width: 52rem;
+  }
+
+  .list a {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.28rem 0;
+    border-bottom: 0;
+  }
+  .list a:hover .label { color: var(--navy); }
+  .list a:hover .leader { border-bottom-color: var(--rule-strong); }
+
+  .num { color: var(--muted); flex: none; width: 1.75rem; }
+  .label {
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    flex: none;
+    transition: color var(--step) linear;
+  }
+  .leader {
+    flex: 1 1 auto;
+    border-bottom: 1px dotted var(--rule-strong);
+    transform: translateY(-0.22em);
+    transition: border-color var(--step) linear;
+  }
+  .who { color: var(--muted); flex: none; text-align: right; }
+
+  @media (max-width: 52rem) {
+    .list { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 40rem) {
+    .rail { padding-bottom: 0.75rem; }
+    .who { display: none; }
+    .leader { border-bottom-style: dotted; }
+  }
+</style>

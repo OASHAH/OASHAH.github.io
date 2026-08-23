@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F4F0E7"/>
+
+  <line x1="0" y1="72" x2="1200" y2="72" stroke="#D8D2C3" stroke-width="1"/>
+  <text x="96" y="46" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="2.2" fill="#6D6B66">OSAID SHAH</text>
+  <text x="600" y="46" text-anchor="middle" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="2.2" fill="#6D6B66">WORK RECORD</text>
+  <text x="1104" y="46" text-anchor="end" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="2.2" fill="#6D6B66">2020—2026</text>
+
+  <text x="96" y="212" font-family="Spectral, Palatino, 'Iowan Old Style', Georgia, serif" font-size="104" fill="#171817">Osaid Shah</text>
+  <text x="96" y="264" font-family="Spectral, Palatino, 'Iowan Old Style', Georgia, serif" font-size="30" font-style="italic" fill="#171817">Software engineer. I build systems.</text>
+
+  <line x1="96" y1="324" x2="1104" y2="324" stroke="#D8D2C3" stroke-width="1"/>
+  <text x="96" y="354" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2.2" fill="#6E3F36">INDEX</text>
+  
+      <text x="96" y="384" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#6D6B66">01</text>
+      <text x="148" y="384" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#171817">ENERGY SYSTEMS</text>
+      <text x="96" y="410" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#6D6B66">02</text>
+      <text x="148" y="410" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#171817">LABORATORY AUTOMATION</text>
+      <text x="96" y="436" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#6D6B66">03</text>
+      <text x="148" y="436" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#171817">MARKETPLACE OPERATIONS</text>
+      <text x="96" y="462" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#6D6B66">04</text>
+      <text x="148" y="462" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#171817">SWOOP AUTOS</text>
+      <text x="96" y="488" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#6D6B66">05</text>
+      <text x="148" y="488" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#171817">SOASTRA</text>
+      <text x="96" y="514" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#6D6B66">06</text>
+      <text x="148" y="514" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#171817">SOASKIT</text>
+      <text x="96" y="540" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#6D6B66">07</text>
+      <text x="148" y="540" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.6" fill="#171817">SWOOP CART</text>
+
+  <line x1="96" y1="572" x2="1104" y2="572" stroke="#D8D2C3" stroke-width="1"/>
+  <text x="96" y="602" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.8" fill="#6D6B66">ENERGY · LABORATORY AUTOMATION · MARKETPLACES · APPLIED AI</text>
+  <text x="1104" y="602" text-anchor="end" font-family="'IBM Plex Mono', Menlo, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.8" fill="#6D6B66">OASHAH.GITHUB.IO</text>
+</svg>

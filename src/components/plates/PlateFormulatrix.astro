@@ -1,0 +1,61 @@
+---
+/** 02 — Instrument data path: camera stream, broker, warehouse. */
+const frames = [0, 1, 2, 3, 4, 5, 6, 7];
+---
+<div class="plate-scroll" style="--plate-min: 50rem">
+  <svg class="plate" viewBox="0 0 960 240" role="img"
+       aria-label="Diagram: a 24 frames-per-second camera stream inside the STAMPEDE instrument, and the path by which instrument data reaches an MQTT broker, a PostgreSQL warehouse, and OEE dashboards.">
+    <defs>
+      <marker id="ah-fx" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L8 4 L0 8 z" class="head" />
+      </marker>
+    </defs>
+
+    <!-- filmstrip -->
+    <text x="20" y="34" class="t-ink">STAMPEDE — CAMERA STREAM</text>
+    <text x="20" y="50" class="t-sm">EMBEDDED CONTROLS, LIVE DURING AUTOMATED RUNS</text>
+
+    <rect class="box" x="20" y="66" width="400" height="76" />
+    {frames.map((i) => (
+      <>
+        <rect class="line-in" x={26 + i * 49} y={72} width={43} height={64} />
+        <line class="line-in" x1={26 + i * 49} y1={82} x2={69 + i * 49} y2={82} />
+        <line class="line-in" x1={26 + i * 49} y1={126} x2={69 + i * 49} y2={126} />
+      </>
+    ))}
+    <line class="line" x1="20" y1="160" x2="420" y2="160" />
+    {frames.map((i) => <line class="line" x1={26 + i * 49} y1="160" x2={26 + i * 49} y2="166" />)}
+    <text x="20" y="182" class="t-sm">0 MS</text>
+    <text x="420" y="182" text-anchor="end" class="t-sm">333 MS</text>
+    <text x="220" y="182" text-anchor="middle" class="t-accent">24 FPS</text>
+
+    <!-- divider -->
+    <line class="line-in" x1="470" y1="20" x2="470" y2="220" />
+
+    <!-- data path -->
+    <text x="510" y="34" class="t-ink">PRODUCTION DATA PATH</text>
+    <text x="510" y="50" class="t-sm">AµTOPULSE V4 · REAGENT EXCHANGER</text>
+
+    <rect class="box" x="510" y="70" width="120" height="38" />
+    <text x="570" y="93" text-anchor="middle">INSTRUMENT</text>
+    <path class="line" marker-end="url(#ah-fx)" d="M630 89 L688 89" />
+    <text x="659" y="82" text-anchor="middle" class="t-sm">MQTT</text>
+
+    <rect class="box" x="690" y="70" width="120" height="38" />
+    <text x="750" y="93" text-anchor="middle">BROKER</text>
+    <path class="line" marker-end="url(#ah-fx)" d="M810 89 L868 89" />
+
+    <rect class="box" x="870" y="70" width="80" height="38" />
+    <text x="910" y="93" text-anchor="middle" class="t-sm">INGEST</text>
+
+    <path class="line" marker-end="url(#ah-fx)" d="M910 108 L910 140 L818 140" />
+
+    <rect class="box-in" x="690" y="122" width="120" height="38" />
+    <text x="750" y="145" text-anchor="middle">POSTGRESQL</text>
+
+    <path class="line" marker-end="url(#ah-fx)" d="M750 160 L750 186" />
+
+    <rect class="box" x="620" y="188" width="260" height="34" />
+    <text x="750" y="209" text-anchor="middle">SHIFT + CADDY-TIP OEE · DASHBOARDS</text>
+  </svg>
+</div>

@@ -1,0 +1,65 @@
+---
+interface Props {
+  label: string;
+  body: string;
+}
+const { label, body } = Astro.props;
+const paragraphs = body.trim().split(/\n\s*\n/);
+---
+<details class="note">
+  <summary class="u-mono">
+    <span class="mark" aria-hidden="true"></span>
+    <span>{label}</span>
+  </summary>
+  <div class="body">
+    {paragraphs.map((p) => <p>{p}</p>)}
+  </div>
+</details>
+
+<style>
+  .note {
+    grid-column: prose;
+    margin-top: 2rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.8rem 0;
+    color: var(--muted);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--step) linear;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: var(--navy); }
+  summary:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+  .mark {
+    position: relative;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    flex: none;
+  }
+  .mark::before, .mark::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    transition: opacity var(--step) linear;
+  }
+  .mark::before { inset: 3.5px 0 3.5px 0; height: 1px; }
+  .mark::after  { inset: 0 3.5px 0 3.5px; width: 1px; }
+  .note[open] .mark::after { opacity: 0; }
+
+  .body { padding-bottom: 1.4rem; }
+  .body p { margin: 0 0 1em; color: var(--muted); }
+  .body p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 52rem) {
+    .note { grid-column: 1 / -1; }
+  }
+</style>

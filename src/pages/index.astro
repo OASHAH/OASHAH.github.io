@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import RunningHead from "../components/RunningHead.astro";
+import Masthead from "../components/Masthead.astro";
+import Contents from "../components/Contents.astro";
+import WorkEntry from "../components/WorkEntry.astro";
+import WorkingSet from "../components/WorkingSet.astro";
+import Colophon from "../components/Colophon.astro";
+
+const work = (await getCollection("work")).sort((a, b) =>
+  a.data.number.localeCompare(b.data.number),
+);
+
+const rendered = await Promise.all(
+  work.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+
+const contents = work.map((e) => ({
+  number: e.data.number,
+  index: e.data.index,
+  name: e.data.name,
+  slug: e.id,
+}));
+---
+<Base>
+  <RunningHead />
+  <main>
+    <Masthead />
+    <Contents entries={contents} />
+    {rendered.map(({ entry, Content }) => (
+      <WorkEntry
+        slug={entry.id}
+        number={entry.data.number}
+        title={entry.data.title}
+        name={entry.data.name}
+        provenance={entry.data.provenance}
+        period={entry.data.period}
+        location={entry.data.location}
+        tags={entry.data.tags}
+        plate={entry.data.plate}
+        image={entry.data.image}
+        imageAlt={entry.data.imageAlt}
+        caption={entry.data.caption}
+        plateWidth={entry.data.plateWidth}
+        note={entry.data.note}
+        figures={entry.data.figures}
+      >
+        <Content />
+      </WorkEntry>
+    ))}
+    <WorkingSet />
+  </main>
+  <Colophon />
+</Base>

@@ -1,0 +1,23 @@
+{
+  "name": "oashah-work-record",
+  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "og": "node scripts/make-og.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/public-sans": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/spectral": "^5.3.0",
+    "astro": "^7.2.4"
+  },
+  "private": true,
+  "description": "Osaid Shah \u2014 a quiet catalogue of systems."
+}

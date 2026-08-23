@@ -1,0 +1,77 @@
+---
+import { site } from "../site";
+---
+<section class="masthead sheet">
+  <div class="record">
+    <div class="rail u-mono">
+      <span>Lahore</span>
+      <span>{site.year}</span>
+    </div>
+    <div class="prose">
+      <h1>{site.name}</h1>
+      <p class="role">{site.role}</p>
+      <p class="intro">
+        I have spent the last several years working across marketplace software, scientific
+        automation, distributed energy systems and applied AI. Some of that work is below.
+      </p>
+      <p class="intro">Models are now another component I build systems with.</p>
+      <ul class="links u-mono">
+        {site.links.map((l) => (
+          <li>
+            <a href={l.href} rel={l.href.startsWith("http") ? "me noopener" : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .masthead { padding-block: clamp(3.5rem, 9vw, 6.5rem) clamp(2.5rem, 6vw, 4rem); }
+
+  .rail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    color: var(--muted);
+    padding-top: 0.9rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.6rem, 6.2vw, 4.1rem);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+  }
+
+  .role {
+    margin: 0.6rem 0 2rem;
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .intro {
+    margin: 0 0 1.1em;
+    max-width: 34rem;
+    color: var(--muted);
+  }
+  .intro:last-of-type { color: var(--ink); }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.6rem;
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+  .links a { border-bottom-color: var(--rule-strong); }
+
+  @media (max-width: 52rem) {
+    .rail { flex-direction: row; gap: 1.25rem; padding-top: 0; padding-bottom: 1.25rem; }
+  }
+</style>

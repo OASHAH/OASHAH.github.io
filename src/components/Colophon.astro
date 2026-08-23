@@ -1,0 +1,43 @@
+---
+import { site } from "../site";
+---
+<footer class="colophon sheet">
+  <div class="record">
+    <p class="rail u-mono">Colophon</p>
+    <div class="prose">
+      <p class="line">{site.name} · {site.location} · {site.year}</p>
+      <p class="line muted">
+        Set in Spectral, Public Sans and IBM Plex Mono. Built with boring web technology and
+        served as static files.
+      </p>
+      <ul class="links u-mono">
+        {site.links.map((l) => (
+          <li><a href={l.href} rel={l.href.startsWith("http") ? "me noopener" : undefined}>{l.label}</a></li>
+        ))}
+        <li><a href={site.source} rel="noopener">Source ↗</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .colophon {
+    padding-block: clamp(2.5rem, 6vw, 4rem) clamp(3.5rem, 8vw, 6rem);
+    border-top: 1px solid var(--rule);
+  }
+  .rail { margin: 0; color: var(--muted); }
+  .line { margin: 0 0 0.5rem; font-family: var(--serif); }
+  .muted { color: var(--muted); max-width: 30rem; }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.5rem;
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+  }
+
+  @media (max-width: 52rem) {
+    .rail { margin-bottom: 1rem; }
+  }
+</style>

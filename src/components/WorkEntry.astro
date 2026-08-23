@@ -1,0 +1,160 @@
+---
+import Figure from "./Figure.astro";
+import TechnicalNote from "./TechnicalNote.astro";
+import type { PlateKey } from "./plates";
+
+interface Props {
+  slug: string;
+  number: string;
+  title: string;
+  name: string;
+  provenance?: string;
+  period: string;
+  location: string;
+  tags: string[];
+  plate?: string;
+  image?: string;
+  imageAlt?: string;
+  caption?: string;
+  plateWidth: "column" | "full";
+  note?: { label: string; body: string };
+  figures?: { value: string; label: string }[];
+}
+const {
+  slug, number, title, name, provenance, period, location,
+  tags, plate, image, imageAlt, caption, plateWidth, note, figures,
+} = Astro.props;
+---
+<article class="entry sheet" id={slug}>
+  <div class="record">
+    <div class="rail">
+      <p class="number">{number}</p>
+      <hr class="u-rule rail-rule" />
+      <p class="u-mono meta">{period}</p>
+      <p class="u-mono meta">{location}</p>
+    </div>
+
+    <header class="prose head">
+      <p class="u-mono provenance">
+        {name}{provenance && <span class="sub"> · {provenance}</span>}
+      </p>
+      <h2>{title}</h2>
+    </header>
+
+    <div class="prose body">
+      <slot />
+
+      {figures && (
+        <dl class="figures">
+          {figures.map((f) => (
+            <div class="figure-row">
+              <dt class="u-mono">{f.value}</dt>
+              <dd>{f.label}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </div>
+
+    {(plate || image) && caption && (
+      <Figure
+        plate={plate as PlateKey | undefined}
+        image={image}
+        imageAlt={imageAlt}
+        number={number}
+        caption={caption}
+        width={plateWidth}
+      />
+    )}
+
+    {note && <TechnicalNote label={note.label} body={note.body} />}
+
+    <p class="tags u-mono">{tags.join("  ·  ")}</p>
+  </div>
+</article>
+
+<style>
+  .entry {
+    padding-block: clamp(3rem, 7vw, 5rem);
+    border-top: 1px solid var(--rule);
+    scroll-margin-top: 1rem;
+  }
+
+  .rail { grid-row: 1 / span 2; }
+  .number {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 2.25rem;
+    line-height: 1;
+    font-weight: 400;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .rail-rule { margin: 0.9rem 0 0.75rem; }
+  .meta { margin: 0 0 0.3rem; color: var(--muted); }
+
+  .head { grid-row: 1; }
+  .provenance { margin: 0 0 0.7rem; color: var(--oxblood); }
+  .provenance .sub { color: var(--muted); }
+
+  h2 {
+    margin: 0 0 1.5rem;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.55rem, 3.1vw, 2.1rem);
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  .body { grid-row: 2; }
+
+  /* small mono table of scale annotations */
+  .figures {
+    margin: 2rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+  }
+  .figure-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.35rem 0;
+  }
+  .figure-row dt {
+    flex: none;
+    min-width: 8.5rem;
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .figure-row dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  .tags {
+    grid-column: prose;
+    margin: 2.25rem 0 0;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  @media (max-width: 52rem) {
+    .rail {
+      grid-row: auto;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .rail-rule { display: none; }
+    .number { font-size: 1.5rem; }
+    .head, .body, .tags { grid-column: 1 / -1; }
+    .head { grid-row: auto; }
+    .body { grid-row: auto; }
+    .figure-row { flex-direction: column; gap: 0.15rem; }
+  }
+</style>

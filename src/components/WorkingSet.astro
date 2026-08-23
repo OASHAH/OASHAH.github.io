@@ -1,0 +1,70 @@
+---
+const rows = [
+  { k: "Languages",      v: "TypeScript · Python · SQL" },
+  { k: "Systems",        v: "PostgreSQL · Kafka · OpenSearch · MQTT" },
+  { k: "Application",    v: "NestJS · FastAPI · React · Angular · SvelteKit" },
+  { k: "Infrastructure", v: "Docker · Cloudflare · AWS · Linux" },
+  { k: "AI",             v: "Claude Code · Codex · OpenAI · OpenRouter · MCP" },
+];
+---
+<section class="working sheet" id="working-set">
+  <div class="record">
+    <div class="rail">
+      <p class="number">08</p>
+      <hr class="u-rule rail-rule" />
+      <p class="u-mono meta">Working set</p>
+    </div>
+    <div class="prose">
+      <p class="lede">
+        Technologies appear beside the work where they mattered. This is the short reference,
+        not the exhaustive one — the résumé keeps that.
+      </p>
+      <dl class="set">
+        {rows.map((r) => (
+          <div class="row">
+            <dt class="u-mono">{r.k}</dt>
+            <dd class="u-mono">{r.v}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .working {
+    padding-block: clamp(3rem, 7vw, 5rem);
+    border-top: 1px solid var(--rule);
+    scroll-margin-top: 1rem;
+  }
+  .number {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 2.25rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .rail-rule { margin: 0.9rem 0 0.75rem; }
+  .meta { margin: 0; color: var(--muted); }
+
+  .lede { margin: 0 0 2rem; color: var(--muted); max-width: 32rem; }
+
+  .set { margin: 0; }
+  .row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .row:last-child { border-bottom: 1px solid var(--rule); }
+  .row dt { flex: none; width: 9rem; color: var(--muted); }
+  .row dd { margin: 0; color: var(--ink); line-height: 1.9; }
+
+  @media (max-width: 52rem) {
+    .rail { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+    .rail-rule { display: none; }
+    .number { font-size: 1.5rem; }
+    .row { flex-direction: column; gap: 0.35rem; }
+    .row dt { width: auto; }
+  }
+</style>
