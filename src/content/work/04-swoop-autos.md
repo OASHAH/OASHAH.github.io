@@ -14,8 +14,9 @@ figures:
     label: "of inquiries completing without a human handoff"
   - value: "−82%"
     label: "inference cost per inquiry, after tiered model routing"
-plate: "swoop"
-caption: "Inquiry pipeline: bounded stages, escalation, gated send"
+image: "/work/swoop-console.webp"
+imageAlt: "The Swoop inquiry console: a live queue of car-part inquiries with their state, part counts, confidence and next action"
+caption: "Inquiry operations console, August 2026. Customer names, numbers and VINs redacted."
 plateWidth: "full"
 note:
   label: "Architecture note: a deliberately bounded pipeline"
@@ -26,9 +27,6 @@ note:
 
     Two properties matter more than the model choices. Every automated stage remains manually executable, so an operator can take any single step by hand without leaving the system. And outbound sending is gated: nothing reaches a customer or supplier on a model's say-so alone.
 ---
+Someone photographs a broken part, sends it to a WhatsApp number, and expects a price. Swoop runs everything in between: identify the vehicle, identify the part, route to suppliers who carry it, collect what comes back, quote. It is in daily production use by operators in the Dubai car-parts trade, and it took one operator from roughly ten inquiries a day to over a hundred.
 
-Someone photographs a broken part, sends it to a WhatsApp number, and expects a price. Between those two events sits the actual work: identify the vehicle, identify the part, find suppliers who carry it, ask them, collect what comes back, and quote. Swoop runs that loop. It is in daily production use by operators in the car-parts trade, and it has moved a single operator from roughly ten inquiries a day to over a hundred.
-
-Intake is multimodal and multilingual because the trade is. Voice notes arrive in Pashto, Urdu, Arabic and English; parts arrive as photographs and video; vehicle identity is resolved through OCR, function calling and NHTSA vPIC lookups rather than inferred. The pipeline is deliberately bounded — SEE, EXTRACT, CHECK, DECIDE, BUILD — and the boundaries are the design. An uncertain read escalates instead of proceeding, every automated stage stays manually executable, and outbound sending is gated.
-
-Operators report that roughly nine inquiries in ten complete without a handoff. The tenth is the reason the system is built this way, not a defect in it. Tiered model routing and selective escalation to premium models cut inference cost per inquiry by 82%. The business attracted an initial AED 60K credit on live traction, then a USD 200K working-capital line as volume scaled.
+Intake is multimodal and multilingual — voice notes in Pashto, Urdu, Arabic and English, parts as photographs and video, vehicle identity resolved through OCR, function calling and NHTSA vPIC rather than guessed. The pipeline is deliberately bounded: SEE, EXTRACT, CHECK, DECIDE, BUILD. Uncertain reads escalate, every automated stage stays manually executable, and outbound sending is gated. Around nine inquiries in ten complete without a handoff, and tiered model routing cut inference cost per inquiry by 82%.

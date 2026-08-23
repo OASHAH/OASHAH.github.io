@@ -17,6 +17,15 @@ const work = defineCollection({
     period: z.string(),
     location: z.string(),
     tags: z.array(z.string()),
+    /** Company / product logos shown under the headline. */
+    brands: z.array(z.object({
+      src: z.string(),
+      name: z.string(),
+      scale: z.number().optional(),
+    })).optional(),
+    /** Product photography shown as a strip. */
+    strip: z.array(z.object({ src: z.string(), alt: z.string() })).optional(),
+    stripCaption: z.string().optional(),
     /** Key into the plate registry (src/components/plates/index.ts). */
     plate: z.string().optional(),
     /** Path under /public for a photographic or screenshot figure. Takes precedence over `plate`. */

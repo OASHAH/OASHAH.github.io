@@ -1,0 +1,42 @@
+---
+interface Props {
+  images: { src: string; alt: string }[];
+  number: string;
+  caption: string;
+}
+const { images, number, caption } = Astro.props;
+---
+<figure class="strip">
+  <div class="frames">
+    {images.map((i) => <img src={i.src} alt={i.alt} loading="lazy" decoding="async" />)}
+  </div>
+  <figcaption class="u-mono">
+    <span class="fig">Fig. {number}</span> — {caption}
+  </figcaption>
+</figure>
+
+<style>
+  .strip { grid-column: 1 / -1; margin: 2.5rem 0 0; }
+  .frames {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .frames img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--paper-inset);
+  }
+  figcaption {
+    margin-top: 0.85rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .fig { color: var(--oxblood); }
+</style>

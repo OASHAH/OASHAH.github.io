@@ -1,0 +1,49 @@
+---
+interface Props {
+  brands: { src: string; name: string; scale?: number }[];
+}
+const { brands } = Astro.props;
+---
+<ul class="brands">
+  {brands.map((b) => (
+    <li>
+      <img
+        src={b.src}
+        alt={`${b.name} logo`}
+        loading="lazy"
+        decoding="async"
+        style={`--scale:${b.scale ?? 1}`}
+      />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .brands {
+    grid-column: prose / -1;
+    grid-row: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 2.5rem;
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+  .brands img {
+    display: block;
+    height: calc(1.75rem * var(--scale, 1));
+    width: auto;
+    max-width: 11rem;
+    object-fit: contain;
+  }
+  /* the logos are the brands' own colours; on the dark sheet they need a lift */
+  :global([data-theme="dark"]) .brands img {
+    filter: brightness(1.12) saturate(1.05);
+  }
+
+  @media (max-width: 52rem) {
+    .brands { grid-column: 1 / -1; grid-row: auto; gap: 1rem 1.75rem; }
+    .brands img { height: calc(1.4rem * var(--scale, 1)); }
+  }
+</style>

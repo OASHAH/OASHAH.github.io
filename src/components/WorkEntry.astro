@@ -1,4 +1,6 @@
 ---
+import Brands from "./Brands.astro";
+import Strip from "./Strip.astro";
 import Figure from "./Figure.astro";
 import TechnicalNote from "./TechnicalNote.astro";
 import type { PlateKey } from "./plates";
@@ -12,6 +14,9 @@ interface Props {
   period: string;
   location: string;
   tags: string[];
+  brands?: { src: string; name: string; scale?: number }[];
+  strip?: { src: string; alt: string }[];
+  stripCaption?: string;
   plate?: string;
   image?: string;
   imageAlt?: string;
@@ -22,7 +27,7 @@ interface Props {
 }
 const {
   slug, number, title, name, provenance, period, location,
-  tags, plate, image, imageAlt, caption, plateWidth, note, figures,
+  tags, brands, strip, stripCaption, plate, image, imageAlt, caption, plateWidth, note, figures,
 } = Astro.props;
 ---
 <article class="entry sheet" id={slug}>
@@ -40,6 +45,8 @@ const {
       </p>
       <h2>{title}</h2>
     </header>
+
+    {brands && <Brands brands={brands} />}
 
     <div class="prose body">
       <slot />
@@ -67,9 +74,14 @@ const {
       />
     )}
 
+    {strip && stripCaption && <Strip images={strip} number={number} caption={stripCaption} />}
+
     {note && <TechnicalNote label={note.label} body={note.body} />}
 
-    <p class="tags u-mono">{tags.join("  ·  ")}</p>
+    <dl class="stack">
+      <dt class="u-mono">Technologies</dt>
+      <dd class="u-mono">{tags.join("  ·  ")}</dd>
+    </dl>
   </div>
 </article>
 
@@ -80,7 +92,7 @@ const {
     scroll-margin-top: 1rem;
   }
 
-  .rail { grid-row: 1 / span 2; }
+  .rail { grid-row: 1 / span 3; }
   .number {
     margin: 0;
     font-family: var(--serif);
@@ -107,7 +119,7 @@ const {
     text-wrap: balance;
   }
 
-  .body { grid-row: 2; }
+  .body { grid-row: 3; }
 
   /* small mono table of scale annotations */
   .figures {
@@ -135,12 +147,16 @@ const {
     color: var(--muted);
   }
 
-  .tags {
-    grid-column: prose;
+  .stack {
+    grid-column: prose / -1;
+    display: flex;
+    gap: 1.5rem;
     margin: 2.25rem 0 0;
-    color: var(--muted);
-    line-height: 2;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--rule);
   }
+  .stack dt { flex: none; width: 7rem; color: var(--muted); }
+  .stack dd { margin: 0; color: var(--ink); line-height: 2; }
 
   @media (max-width: 52rem) {
     .rail {
@@ -152,7 +168,9 @@ const {
     }
     .rail-rule { display: none; }
     .number { font-size: 1.5rem; }
-    .head, .body, .tags { grid-column: 1 / -1; }
+    .head, .body, .stack { grid-column: 1 / -1; }
+    .stack { flex-direction: column; gap: 0.5rem; }
+    .stack dt { width: auto; }
     .head { grid-row: auto; }
     .body { grid-row: auto; }
     .figure-row { flex-direction: column; gap: 0.15rem; }
