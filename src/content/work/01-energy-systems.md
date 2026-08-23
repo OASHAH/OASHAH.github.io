@@ -16,13 +16,13 @@ plateWidth: "full"
 note:
   label: "Architecture note: one governed surface"
   body: |
-    Clients call a single gateway rather than individual services. It owns the routes, composes the response from whichever services are involved, and applies the tenant's identity before any request reaches them.
+    A KrakenD gateway fronts the services. It owns routing, composes the JSON:API document and resolves tenant identity before any request reaches a downstream service.
 
-    Records and search are stored separately and kept in sync by an event stream. The same stream carried data across from the legacy system during migration.
+    PostgreSQL holds the records and OpenSearch the read model, kept in sync over Kafka. The same topics carried the legacy data across during migration.
 
-    Schema changes use expand-and-contract: add the new shape, write to both, move readers, then drop the old one. Every step is reversible, and every release is gated per tenant behind a feature flag.
+    Schema changes follow expand-and-contract — add, dual-write, migrate readers, drop — with per-tenant feature flags gating each release.
 ---
 
-SIV.AG has built software for German utilities for forty years. I work on replacing that legacy system with event-driven microservices, one domain at a time, while the original stays in production.
+SIV.AG has built software for German utilities for forty years. I work on the phased migration of that legacy monolith to event-driven microservices, with the original still in production.
 
-I have delivered two services from greenfield to production: one consolidating the address records the business bills against, the other handling grid registration, solar onboarding and metering. Both required migrating millions of records off the legacy system without downtime, and turning decades of undocumented business rules into a working domain model. I also set the architecture standards the other teams build on, and introduced AI-assisted development across planning, documentation and implementation.
+I delivered two services greenfield to production: a master-data platform consolidating millions of address records across tenants, and the Feed-in MVP for grid registration, solar onboarding and metering. Both required zero-downtime migration and domain modelling from undocumented legacy rules. I defined the architecture standards through ADRs and introduced AI-assisted development across the team.

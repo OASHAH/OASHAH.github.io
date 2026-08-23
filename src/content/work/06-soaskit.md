@@ -12,6 +12,6 @@ caption: "Personal sources, one append-only record, scoped tools"
 plateWidth: "column"
 ---
 
-A private second brain covering tasks, finances, notes, journaling, books and career records, built as one system with agent access on top.
+A private second brain covering tasks, finances, notes, journaling, books and career records, with agent access over the same data.
 
-FastAPI and PostgreSQL underneath, with SvelteKit and Android clients. Local pipelines ingest WhatsApp, Gmail and chat history into append-only events, searchable memory and a generated chronology. MCP servers expose the same data and actions to agents that I use myself, with scoped tools, confirmation policies and audit records.
+FastAPI and PostgreSQL, with SvelteKit and Android clients. Local ETL pipelines normalise WhatsApp, Gmail and chat exports into an append-only event store with searchable memory and a generated chronology. MCP servers expose scoped tools to agents behind confirmation policies, audit logging and Cloudflare Access.
