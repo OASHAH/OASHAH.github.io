@@ -16,13 +16,13 @@ plateWidth: "full"
 note:
   label: "Architecture note: one governed surface"
   body: |
-    Clients do not address services. They address a gateway that owns the routes, composes the response from whichever services are involved, and applies the tenant's identity before anything downstream sees the request.
+    Clients call a single gateway rather than individual services. It owns the routes, composes the response from whichever services are involved, and applies the tenant's identity before any request reaches them.
 
-    Retrieval and record-keeping stay separate concerns, kept consistent by an event stream that also carried the legacy estate across during the migration.
+    Records and search are stored separately and kept in sync by an event stream. The same stream carried data across from the legacy system during migration.
 
-    Schema changes follow expand-and-contract: add the new shape, write both, move readers, then remove the old one — every step reversible, every release gated per tenant.
+    Schema changes use expand-and-contract: add the new shape, write to both, move readers, then drop the old one. Every step is reversible, and every release is gated per tenant behind a feature flag.
 ---
 
-SIV.AG has been building the software German utilities run on for four decades. The work is a migration: taking a system with that much history inside it and rebuilding it as event-driven services, domain by domain, without interrupting the utilities depending on it.
+SIV.AG has built software for German utilities for forty years. I work on replacing that legacy system with event-driven microservices, one domain at a time, while the original stays in production.
 
-I have taken two of those services from greenfield to production — one consolidating the address records the business settles against, the other covering grid registration, solar onboarding and metering. Both meant moving millions of records out of the legacy estate while it continued to serve, and sifting forty years of accumulated domain knowledge into a model that could hold it honestly. Alongside delivery I set the standards the other teams build against, worked across those teams to land them, and drove an AI-first practice through planning, architecture and implementation.
+I have delivered two services from greenfield to production: one consolidating the address records the business bills against, the other handling grid registration, solar onboarding and metering. Both required migrating millions of records off the legacy system without downtime, and turning decades of undocumented business rules into a working domain model. I also set the architecture standards the other teams build on, and introduced AI-assisted development across planning, documentation and implementation.

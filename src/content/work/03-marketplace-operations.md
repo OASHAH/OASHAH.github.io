@@ -15,6 +15,6 @@ brands:
   - { src: "/work/logos/zameen.png", name: "Zameen.com", scale: 1.05 }
 ---
 
-Behind the listings on those marketplaces sits an operations business: cars are inspected, auctioned, assigned to agents, scheduled and sold. I built and led delivery on the platform that ran it — CRM, auctions, inspections, scheduling, reporting and access control — from a single multi-tenant codebase serving every brand.
+These marketplaces run a vehicle operations business behind the listings: cars are inspected, auctioned, assigned to agents, scheduled and sold. I built and led delivery of the platform that ran it — CRM, auctions, inspections, scheduling, reporting and access control — from one multi-tenant codebase serving every brand.
 
-Most of the value was in removing manual process. Warehouse attendance moved to QR check-in; field-sales allocation moved to scheduled rotas and rule-based lead assignment. Neither is interesting technology, and both are why the rest of the platform was trusted with anything.
+Much of the work replaced manual process. Warehouse attendance moved to QR check-in. Field-sales allocation moved to scheduled rotas and rule-based lead assignment.
